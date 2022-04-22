@@ -84,12 +84,10 @@ def main():
 		for i in range(len(List)):
 			for j in range(len(List)):
 				locals()[str(i) + '_vx'] = List[i]
-				vx = locals()[str(i)+"_1234vx"]
-				print(vx)
-				locals()[str(i) + '_vy'] = i
-				vy = locals()[str(i) + '_vy']
-				print(vy)
-				vx,vy= bouncing_dectect(i,j,vx,vy)
+				locals()[str(i) + '_vy'] = List[i]		# locals()[str(i) + '_vy']
+				# vy = locals()[str(i) + '_vy']
+				# print(vy)
+				vx,vy= bouncing_dectect(i,j,locals()[str(i) + '_vx'],locals()[str(i) + '_vy'])
 
 
 

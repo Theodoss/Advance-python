@@ -48,5 +48,6 @@ def remove_mole(event):
         score +=1
         label.text ='Scroe==='+str(score)
 
+
 if __name__ == '__main__':
     main()

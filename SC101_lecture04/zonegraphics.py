@@ -17,6 +17,7 @@ class ZoneGraphics:
     def __init__(self, window_width=WINDOW_WIDTH, window_height=WINDOW_HEIGHT,
                  zone_width=ZONE_WIDTH, zone_height=ZONE_HEIGHT, ball_radius=BALL_RADIUS):
         # Create window
+        self._ball = None
         self._window = GWindow(width=window_width, height=window_height)
         # Create zone
         self._zone = GRect(zone_width, zone_height)
@@ -27,15 +28,19 @@ class ZoneGraphics:
         self._ball.filled = True
         self._ball.color = 'blue'
         self._ball.fill_color = 'blue'
-        self.set_ball_position()
         self._window.add(self._ball)
+        self.vx = 1
+        self.vy = 1
+        self.reset_ball()
 
-        # Velocity
-        self.vx = random.randint(0, MAX_SPEED)
-        self.vy = random.randint(MIN_Y_SPEED, MIN_Y_SPEED)
+        onmouseclicked(self.click)
 
         # Initialize mouse listeners
-        self.onmouseclicked(self.click())
+
+    def click(self, event):
+        obj = self._window.get_object_at(event.x, event.y)
+        if obj == self.ball:
+            self.reset_ball()
 
     def set_ball_position(self):
         random_x = random.randint(0, self._window.width - self._ball.width)
@@ -43,8 +48,33 @@ class ZoneGraphics:
         if (self._window.width - self._zone.width) / 2 < random_x < (self._window.width + self._zone.width) / 2 \
                 and (self._window.height - self._zone.height) / 2 < random_y < (
                 self._window.height + self._zone.height) / 2:
+            return None
+        else:
             self._ball.x = random_x
             self._ball.y = random_y
+
+    def reset_ball(self):
+        self.set_ball_position()
+        while self.ball_in_zone():
+            self.set_ball_position()
+            self._window.add(self._ball)
+
+    def ball_in_zone(self):
+        zone_left_side = self._zone.x
+        zone_right_side = self._zone.x + self._zone.width
+        is_ball_in_zone = zone_left_side <= self._ball.x <= zone_right_side
+        zone_top_side = self._zone.y
+        zone_bottom_side = self._zone.y + self._zone.height
+        is_ball_y_in_zone = zone_top_side <= self._ball.x <= zone_bottom_side
+        return is_ball_in_zone and is_ball_y_in_zone
+
+    def set_ball_velocity(self):
+        self.vx = random.randint(0, MAX_SPEED)
+        self.vy = random.randint(MIN_Y_SPEED, MIN_Y_SPEED)
+        if random.random() > 0.5:
+            self.vx = - self.vx
+        if random.random() > 0.5:
+            self.vy = - self.vy
 
     def get_vx(self):
         return self.vx
@@ -58,7 +88,6 @@ class ZoneGraphics:
     def set_vy(self):
         self.vy *= -1
 
-    def click(mouse):
-        mouse_x = mouse.x
-        mouse_y = mouse.v
-        # return mouse_x, mouse_y
+    @property
+    def ball(self):
+        return self._ball

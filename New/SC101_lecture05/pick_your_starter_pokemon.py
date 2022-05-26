@@ -7,10 +7,11 @@ to launch different functions.
 We will be introducing sys module and use it
 to do the job
 """
-
+import sys
 
 def main():
-	pass
+	sys.argv
+	print('________________________________________________')
 
 
 def draw_charmander():

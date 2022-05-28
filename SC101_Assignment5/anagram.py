@@ -27,9 +27,9 @@ def main():
     """
     TODO:
     """
-    read_dictionary()
+    # read_dictionary()
     start = time.time()
-
+    find_anagrams('stop')
     ####################
     #                  #
     #       TODO:      #
@@ -41,12 +41,22 @@ def main():
 
 
 def read_dictionary():
-    list = []
+    # lst = []
+    dct = {}
     with open(FILE, 'r') as f:
         for line in f.readlines():
             line = line.strip()
-            list.append(line)
-
+            # lst.append(line)
+            first_alpha = line[0]
+            str_long = len(line)
+            # 編寫帶兩個Key(字頭&長度)的數據庫結構
+            if first_alpha not in dct:
+                dct[first_alpha]= {str_long: line.split()}
+            else:
+                if str_long not in dct[first_alpha]:
+                    dct[first_alpha][str_long] = line.split()
+                else:
+                    dct[first_alpha][str_long].append(line)
 
 
 
@@ -55,8 +65,29 @@ def find_anagrams(s):
     :param s:
     :return:
     """
-    pass
+    str_len = len(s)
+    ans_lst = []
+    find_anagrams_helper(s,[],ans_lst)
+    print(ans_lst)
 
+    #創造所有可能組合'
+
+
+def find_anagrams_helper(s, current_lst, ans_lst):
+    if len(current_lst) == len(s):
+        ans_lst.append("".join(current_lst))
+    else:
+        for ch in s:
+            if ch in current_lst:
+                pass
+            else:
+                # choose
+                current_lst.append(ch)
+                # explorer
+                find_anagrams_helper(s, current_lst, ans_lst)
+                # un-choose
+                current_lst.pop()
+            # if s ==
 
 def has_prefix(sub_s):
     """

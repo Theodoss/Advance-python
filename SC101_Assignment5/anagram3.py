@@ -17,6 +17,7 @@ number of anagrams for each word listed below:
 """
 
 import time  # This file allows you to calculate the speed of your algorithm
+
 # Constants
 FILE = 'dictionary.txt'  # This is the filename of an English dictionary
 EXIT = '-1'  # Controls when to stop the loop
@@ -36,13 +37,14 @@ def main():
         else:
             start = time.time()
             find_anagrams(text, verb_dict)
+
             end = time.time()
             print('----------------------------------')
             print(f'The speed of your anagram algorithm: {end - start} seconds.')
-            verb_dict = read_dictionary()
 
 
 def read_dictionary():
+    # lst = []
     dct = {}
     with open(FILE, 'r') as f:
         for line in f.readlines():
@@ -69,7 +71,7 @@ def find_anagrams(s, verb_dict):
     """
     ans_lst = []
     print(f'Start searching......')
-    find_anagrams_helper(sorted(s), [], ans_lst, list(s), verb_dict)
+    find_anagrams_helper(s, [], ans_lst, list(s), verb_dict)
     print(f'Find {len(ans_lst)} anagram : {ans_lst}')
 
 
@@ -98,11 +100,9 @@ def find_anagrams_helper(s, current_lst, ans_lst, contral_list, verb_dict):
 
 def has_prefix(sub_s, str_len, dic):
     #　找尋當前list是否包含該開頭
-    if len(sub_s) >= 2:
+    if sub_s != None and len(sub_s) >= 2:
         for i in range(len(dic[sub_s[0]][str_len])):
             if dic[sub_s[0]][str_len][i].startswith(sub_s) is True:
-                # 減少for loop 長度
-                dic[sub_s[0]][str_len][0:i] = []
                 return True
     else:
         return True

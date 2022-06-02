@@ -18,38 +18,24 @@ def main():
 
 
 def find_largest_digit(n):
-    """
-	param n:
-	return:
-	"""
-
     n = abs(n)
-    n_count = n
-    digit = 1
     ans = 0
-    digit = fine_largest_digit_helper(n, digit)
-    ans = fine_largest_digit_helper2(n, n_count, digit, ans)
+    ans = fine_largest_digit_helper(n, ans)
     return ans
 
 
-def fine_largest_digit_helper(n, digit):
+def fine_largest_digit_helper(n, ans):
     if n < 10:
-        return digit
+        if ans < n:
+            ans = n
+        return int(ans)
     else:
-        n = n / 10
-        digit += 1
-        return fine_largest_digit_helper(n, digit)
-
-
-def fine_largest_digit_helper2(n, n_count, digit, ans):
-    if digit == 0:
-        return ans
-    else:
-        digit -= 1
-        if ans < n / (10 ** digit):
-            ans = int(n / (10 ** digit))
-        n = n - ans * (10 ** digit)
-        return fine_largest_digit_helper2(n, n_count, digit, ans)
+        # 比對浮點數第一位大小
+        if ans < n - (n // 10) * 10:
+            ans = n - (n // 10) * 10
+        # 扣掉個位數並除以10
+        n = (n - (n - (n // 10) * 10)) / 10
+        return fine_largest_digit_helper(n, ans)
 
 
 if __name__ == '__main__':

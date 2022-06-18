@@ -16,8 +16,41 @@ FILENAME = 'movie_review.txt'
 
 
 def main():
-	pass
+	word_d = {}
+	with open(FILENAME, 'r') as f:
+		for line in f:
+			lst = line.split(':')
+			score = int(lst[0][1:3])
+			# print(score)
+			review = lst[1]
+			tokens = review.split()
+			for token in tokens:
+				token = string_manipulation(token)
+				if token in word_d:
+					word_d[token] += score
+				else:
+					word_d[token] = score
+
+	d = {'positive': [], 'neutral': [], 'negative': []}
+	for word, score in word_d.items():
+		if score > 0:
+			# positive
+			d['positive'].append(word)
+
+			# neutral
+			d['neutral'].append(word)
+
+			# negative
+			d['negative'].append(word)
+
+def string_manipulation(s):
+	ans = ''
+	for ch in s:
+		if ch.isalpha():
+			ans += ch.lower()
+	return ans
 
 
 if __name__ == '__main__':
 	main()
+

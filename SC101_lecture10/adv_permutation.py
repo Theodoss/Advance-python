@@ -24,14 +24,14 @@ def permutation_helper(lst, current_lst, ans_len):
 			if num in current_lst:
 				pass
 			else:
-				# choose
-				current_lst.append(num)
-				# explorer
-				permutation_helper(lst, current_lst, ans_len)
-				# un-choose
-				current_lst.pop()
+				# # choose
+				# current_lst.append(num)
+				# # explorer
+				# permutation_helper(lst, current_lst, ans_len)
+				# # un-choose
+				# current_lst.pop()
 			# or
-			# 	permutation_helper(lst, current_lst + [num], ans_len)
+				permutation_helper(lst, current_lst + [num], ans_len)
 
 
 

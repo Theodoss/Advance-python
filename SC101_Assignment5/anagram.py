@@ -18,7 +18,7 @@ number of anagrams for each word listed below:
 
 import time  # This file allows you to calculate the speed of your algorithm
 # Constants
-FILE = 'dictionary.txt'  # This is the filename of an English dictionary
+FILE = 'dictionary2.txt'  # This is the filename of an English dictionary
 EXIT = '-1'  # Controls when to stop the loop
 
 
@@ -27,6 +27,7 @@ def main():
     TODO:
     """
     verb_dict = read_dictionary()
+    print(verb_dict)
     print(f'Welcome to stanCode ''Anagram Generator'' (or -1 to quit)')
     while True:
         text = input('Find anagrams for :')
@@ -47,7 +48,6 @@ def read_dictionary():
     with open(FILE, 'r') as f:
         for line in f.readlines():
             line = line.strip()
-            # lst.append(line)
             first_alpha = line[0]
             str_long = len(line)
             # 編寫帶兩個Key(字頭&長度)的數據庫結構

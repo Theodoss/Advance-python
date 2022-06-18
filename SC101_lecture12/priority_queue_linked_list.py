@@ -19,9 +19,56 @@ class ListNode:
 
 def main():
 	priority_queue = None
-	
+
 	print('--------------------------------')
 	# TODO:
+	while True:
+		name = input("name :")
+		if name == 'EXIT':
+			break
+		priorty = input("priorty :")
+		new_node = ListNode((name, priorty), None)
+	##### Construct linked_list #####
+		if priority_queue == None:
+			print("Original linked_list: ")
+			priority_queue = new_node
+		else:
+		######## Prepend ########
+			if priority_queue.val[1] > priorty:
+				print("Prepend")
+				new_node.next = priority_queue
+				priority_queue = new_node
+		#########################
+			else:
+		######## Append #########
+		# print("Appending")
+		# cur = priority_queue
+		# while cur.next is not None:
+		# 	cur = cur.next
+		# cur.next = new_node
+		#########################
+
+		######### In between ############
+				cur = priority_queue
+				while True:
+					# if cur.val[0] <= new_node.val[0] < cur.next.val[0] and cur.val[1] <= new_node.val[1] < cur.next.val[1]:
+					if cur.next is None:
+						print("append")
+						cur.next = new_node
+						break
+					elif cur.val[1] <= priorty < cur.next.val[1]:
+						print("In between")
+						new_node.next = cur.next
+						cur.next = new_node
+						break
+					else:
+						print("cur go")
+						cur = cur.next
+					# elif cur.next is not None:
+					# 	print("cur go")
+					# 	cur = cur.next
+					# else:
+					# 	break
 	print('--------------------------------')
 	traversal(priority_queue)
 

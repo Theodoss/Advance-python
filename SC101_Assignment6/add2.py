@@ -15,12 +15,34 @@ class ListNode:
 
 
 def add_2_numbers(l1: ListNode, l2: ListNode) -> ListNode:
+    head_l3 = ListNode(0, None)
+    cur_l1 = l1
+    cur_l2 = l2
+    cur_l3 = head_l3
     #######################
     #                     #
     #        TODO:        #
     #                     #
     #######################
-    return None
+    while cur_l1 is not None or cur_l2 is not None:
+
+        if cur_l1 is None:
+            cur_l1 = ListNode(0, None)
+
+        if cur_l2 is None:
+            cur_l2 = ListNode(0, None)
+
+        value = (cur_l3.val + cur_l1.val + cur_l2.val) // 10
+        cur_l3.val = (cur_l3.val + cur_l1.val + cur_l2.val) % 10
+
+        if cur_l1.next is not None or cur_l2.next is not None or value != 0:
+            cur_l3.next = ListNode(value, None)
+
+        cur_l1 = cur_l1.next
+        cur_l2 = cur_l2.next
+        cur_l3 = cur_l3.next
+
+    return head_l3
 
 
 ####### DO NOT EDIT CODE BELOW THIS LINE ########

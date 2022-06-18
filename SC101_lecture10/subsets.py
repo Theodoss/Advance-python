@@ -19,7 +19,19 @@ def list_sub_lists(lst):
     """
     :param lst: list[str], containing a number of characters
     """
-    pass
+    subset = []
+    list_sub_lists_helper(lst,subset)
+
+
+def list_sub_lists_helper(lst,subset):
+    if len(lst)== 0:
+        print(subset)
+
+    else:
+        # Choose
+        ele
+
+
 
 
 if __name__ == '__main__':

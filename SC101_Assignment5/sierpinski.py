@@ -40,6 +40,7 @@ def sierpinski_triangle(order, length, upper_left_x, upper_left_y):
 	:param upper_left_y:
 	:return:
 	"""
+
 	if order == 0:
 		print("function end")
 	else:

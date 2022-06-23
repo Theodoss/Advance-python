@@ -20,10 +20,12 @@ def problemFive(head:ListNode, x:int) -> ListNode:
     while cur is not None:
         print(cur.val)
         if cur.val < x:
-            smell_cur.next = ListNode(cur.val,None)
+            # smell_cur.next = ListNode(cur.val,None)
+            smell_cur.next = cur
             smell_cur = smell_cur.next
         else:
-            big_cur.next = ListNode(cur.val,None)
+            # big_cur.next = ListNode(cur.val,None)
+            big_cur.next = cur
             big_cur = big_cur.next
         cur = cur.next
     smell_cur.next = big_head.next

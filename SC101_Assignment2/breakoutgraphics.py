@@ -135,101 +135,101 @@ class BreakoutGraphics:
 
 
     # 利用八點進行碰撞檢測
-    # def ball_bounce(self):
-    #     # 建立八角等距碰撞檢測點
-    #     ball_point1 = self.window.get_object_at(self.ball.x, self.ball.y)
-    #     ball_point2 = self.window.get_object_at(self.ball.x + self.ball.width, self.ball.y)
-    #     ball_point3 = self.window.get_object_at(self.ball.x, self.ball.y + self.ball.height)
-    #     ball_point4 = self.window.get_object_at(self.ball.x + self.ball.width, self.ball.y + self.ball.height)
-    #     # 正上
-    #     ball_point5 = self.window.get_object_at(self.ball.x + self.ball.width / 2, self.ball.y - self.ball.width * 0.4)
-    #     # 正右
-    #     ball_point6 = self.window.get_object_at(self.ball.x + self.ball.width + self.ball.width * 0.4, self.ball.y + self.ball.height / 2)
-    #     # 正下
-    #     ball_point7 = self.window.get_object_at(self.ball.x + self.ball.width / 2, self.ball.y + self.ball.height + self.ball.width * 0.4)
-    #     # 正左
-    #     ball_point8 = self.window.get_object_at(self.ball.x - self.ball.width * 0.4, self.ball.y + self.ball.height / 2)
-    #
-    #     # 檢測是否可以碰撞
-    #     if self._bounce_switch is True:
-    #         # 檢測四邊是否碰撞
-    #         if bool(ball_point1) is True or bool(ball_point2) is True or bool(ball_point3) is True \
-    #                 or bool(ball_point4) is True or bool(ball_point5) is True or bool(ball_point6) is True\
-    #                 or bool(ball_point7) is True or bool(ball_point8) is True:
-    #             # 先檢測雙點碰撞跟速度檢測
-    #             if bool(ball_point5) is True and self.__dy < 0: # 正上方
-    #                 print(f'bounce_5')
-    #                 self.y_bounce()
-    #                 self._bounce_switch = False
-    #                 bounce_object = ball_point5
-    #                 # 檢測消除單位
-    #                 if bounce_object is not self._paddle:
-    #                     self.window.remove(bounce_object)
-    #                     self._brick_num -= 1
-    #             elif bool(ball_point6) is True and self.__dx > 0: # 正右邊
-    #                 print(f'bounce_6')
-    #                 self.x_bounce()
-    #                 self._bounce_switch = False
-    #                 bounce_object = ball_point6
-    #                 if bounce_object is not self._paddle:
-    #                     self.window.remove(bounce_object)
-    #                     self._brick_num -= 1
-    #             elif bool(ball_point7) is True and self.__dy > 0: # 正下邊
-    #                 print(f'bounce_7')
-    #                 self.y_bounce()
-    #                 self._bounce_switch = False
-    #                 bounce_object = ball_point7
-    #                 if bounce_object is not self._paddle:
-    #                     self.window.remove(bounce_object)
-    #                     self._brick_num -= 1
-    #             elif bool(ball_point8) is True and self.__dx < 0: # 正左邊
-    #                 print(f'bounce_8')
-    #                 self.x_bounce()
-    #                 self._bounce_switch = False
-    #                 bounce_object = ball_point8
-    #                 if bounce_object is not self._paddle:
-    #                     self.window.remove(bounce_object)
-    #                     self._brick_num -= 1
-    #             # 檢測單點碰撞
-    #             elif bool(ball_point1) is True:
-    #                 if self.__dx > 0 or self.__dy > 0:
-    #                     self.x_bounce()
-    #                     self.y_bounce()
-    #                     self._bounce_switch = False
-    #                     bounce_object = self.window.get_object_at(ball_point1.x, ball_point1.y)
-    #                     if bounce_object is not self._paddle:
-    #                         self.window.remove(bounce_object)
-    #                         self._brick_num -= 1
-    #             elif bool(ball_point2) is True:
-    #                 if self.__dx < 0 or self.__dy > 0:
-    #                     self.x_bounce()
-    #                     self.y_bounce()
-    #                     self._bounce_switch = False
-    #                     bounce_object = self.window.get_object_at(ball_point2.x, ball_point2.y)
-    #                     if bounce_object is not self._paddle:
-    #                         self.window.remove(bounce_object)
-    #                         self._brick_num -= 1
-    #             elif bool(ball_point3) is True:
-    #                 if self.__dx > 0 or self.__dy < 0:
-    #                     self.x_bounce()
-    #                     self.y_bounce()
-    #                     self._bounce_switch = False
-    #                     bounce_object = self.window.get_object_at(ball_point3.x, ball_point3.y)
-    #                     if bounce_object is not self._paddle:
-    #                         self.window.remove(bounce_object)
-    #                         self._brick_num -= 1
-    #             elif bool(ball_point4) is True:
-    #                 if self.__dx < 0 or self.__dy < 0:
-    #                     self.x_bounce()
-    #                     self.y_bounce()
-    #                     self._bounce_switch = False
-    #                     bounce_object = self.window.get_object_at(ball_point4.x, ball_point4.y)
-    #                     if bounce_object is not self._paddle:
-    #                         self.window.remove(bounce_object)
-    #                         self._brick_num -= 1
-    #     if bool(ball_point1) is False and bool(ball_point2) is False and bool(ball_point3) is False \
-    #             and bool(ball_point4) is False:
-    #         self._bounce_switch = True
+    def ball_bounce(self):
+        # 建立八角等距碰撞檢測點
+        ball_point1 = self.window.get_object_at(self.ball.x, self.ball.y)
+        ball_point2 = self.window.get_object_at(self.ball.x + self.ball.width, self.ball.y)
+        ball_point3 = self.window.get_object_at(self.ball.x, self.ball.y + self.ball.height)
+        ball_point4 = self.window.get_object_at(self.ball.x + self.ball.width, self.ball.y + self.ball.height)
+        # 正上
+        ball_point5 = self.window.get_object_at(self.ball.x + self.ball.width / 2, self.ball.y - self.ball.width * 0.4)
+        # 正右
+        ball_point6 = self.window.get_object_at(self.ball.x + self.ball.width + self.ball.width * 0.4, self.ball.y + self.ball.height / 2)
+        # 正下
+        ball_point7 = self.window.get_object_at(self.ball.x + self.ball.width / 2, self.ball.y + self.ball.height + self.ball.width * 0.4)
+        # 正左
+        ball_point8 = self.window.get_object_at(self.ball.x - self.ball.width * 0.4, self.ball.y + self.ball.height / 2)
+
+        # 檢測是否可以碰撞
+        if self._bounce_switch is True:
+            # 檢測四邊是否碰撞
+            if bool(ball_point1) is True or bool(ball_point2) is True or bool(ball_point3) is True \
+                    or bool(ball_point4) is True or bool(ball_point5) is True or bool(ball_point6) is True\
+                    or bool(ball_point7) is True or bool(ball_point8) is True:
+                # 先檢測雙點碰撞跟速度檢測
+                if bool(ball_point5) is True and self.__dy < 0: # 正上方
+                    print(f'bounce_5')
+                    self.y_bounce()
+                    self._bounce_switch = False
+                    bounce_object = ball_point5
+                    # 檢測消除單位
+                    if bounce_object is not self._paddle:
+                        self.window.remove(bounce_object)
+                        self._brick_num -= 1
+                elif bool(ball_point6) is True and self.__dx > 0: # 正右邊
+                    print(f'bounce_6')
+                    self.x_bounce()
+                    self._bounce_switch = False
+                    bounce_object = ball_point6
+                    if bounce_object is not self._paddle:
+                        self.window.remove(bounce_object)
+                        self._brick_num -= 1
+                elif bool(ball_point7) is True and self.__dy > 0: # 正下邊
+                    print(f'bounce_7')
+                    self.y_bounce()
+                    self._bounce_switch = False
+                    bounce_object = ball_point7
+                    if bounce_object is not self._paddle:
+                        self.window.remove(bounce_object)
+                        self._brick_num -= 1
+                elif bool(ball_point8) is True and self.__dx < 0: # 正左邊
+                    print(f'bounce_8')
+                    self.x_bounce()
+                    self._bounce_switch = False
+                    bounce_object = ball_point8
+                    if bounce_object is not self._paddle:
+                        self.window.remove(bounce_object)
+                        self._brick_num -= 1
+                # # 檢測單點碰撞
+                # elif bool(ball_point1) is True:
+                #     if self.__dx > 0 or self.__dy > 0:
+                #         self.x_bounce()
+                #         self.y_bounce()
+                #         self._bounce_switch = False
+                #         bounce_object = self.window.get_object_at(ball_point1.x, ball_point1.y)
+                #         if bounce_object is not self._paddle:
+                #             self.window.remove(bounce_object)
+                #             self._brick_num -= 1
+                # elif bool(ball_point2) is True:
+                #     if self.__dx < 0 or self.__dy > 0:
+                #         self.x_bounce()
+                #         self.y_bounce()
+                #         self._bounce_switch = False
+                #         bounce_object = self.window.get_object_at(ball_point2.x, ball_point2.y)
+                #         if bounce_object is not self._paddle:
+                #             self.window.remove(bounce_object)
+                #             self._brick_num -= 1
+                # elif bool(ball_point3) is True:
+                #     if self.__dx > 0 or self.__dy < 0:
+                #         self.x_bounce()
+                #         self.y_bounce()
+                #         self._bounce_switch = False
+                #         bounce_object = self.window.get_object_at(ball_point3.x, ball_point3.y)
+                #         if bounce_object is not self._paddle:
+                #             self.window.remove(bounce_object)
+                #             self._brick_num -= 1
+                # elif bool(ball_point4) is True:
+                #     if self.__dx < 0 or self.__dy < 0:
+                #         self.x_bounce()
+                #         self.y_bounce()
+                #         self._bounce_switch = False
+                #         bounce_object = self.window.get_object_at(ball_point4.x, ball_point4.y)
+                #         if bounce_object is not self._paddle:
+                #             self.window.remove(bounce_object)
+                #             self._brick_num -= 1
+        if bool(ball_point1) is False and bool(ball_point2) is False and bool(ball_point3) is False \
+                and bool(ball_point4) is False:
+            self._bounce_switch = True
 
     def ball_reset(self, life):
         print(life)

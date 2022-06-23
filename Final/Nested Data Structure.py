@@ -6,7 +6,7 @@ def find_pet_dict(filename):
         for line in f:
             line = line.split()
             name = line[0]
-            adj = line[1].split(",")
+            adj = [line.strip(",") for x in line]
             if name not in d:
                 d[name] = adj
 
@@ -28,11 +28,14 @@ def find_pet_dict2(list):
         print(line)
         line = line.split()
         line2 = line[1].split(",")
-        print(line)
+        # adj = [x.strip(",") for x in line]
+        print(adj)
+        # if name not in d:
+        #     print(line)
 find_pet_dict2(list)
 
-for adj in adjs:
-    if adj not in d:
-        d[adj] = name
-    else:
-        d[adj].append(name)
+# for adj in adjs:
+#     if adj not in d:
+#         d[adj] = name
+#     else:
+#         d[adj].append(name)

@@ -202,9 +202,10 @@ def normalize(data: dict):
 	#                          #
 	############################
 	for each_data in data:
-		for element in data[each_data]:
-			element
-		sum(data[each_data])
+		data_min = min(data[each_data])
+		data_max = max(data[each_data])
+		for i in range(len(data[each_data])):
+			data[each_data][i] = (data[each_data][i]-data_min)/(data_max-data_min)
 	return data
 
 
@@ -231,6 +232,8 @@ def learnPredictor(inputs: dict, labels: list, degree: int, num_epochs: int, alp
 				weights[keys[i] + keys[j]] = 0
 	# Step 2 : Start training
 	# TODO:
+	for epoch in num_epochs:
+		
 	# Step 3 : Feature Extract
 	# TODO:
 	# Step 4 : Update weights
